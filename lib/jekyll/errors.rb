@@ -11,6 +11,7 @@ module Jekyll
     InvalidYAMLFrontMatterError = Class.new(FatalException)
     MissingDependencyException  = Class.new(FatalException)
 
+    InvalidPathError            = Class.new(FatalException)
     InvalidDateError            = Class.new(FatalException)
     InvalidPostNameError        = Class.new(FatalException)
     PostURLError                = Class.new(FatalException)
