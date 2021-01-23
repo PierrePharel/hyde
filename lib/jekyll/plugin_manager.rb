@@ -39,25 +39,9 @@ module Jekyll
       return false unless site.theme.runtime_dependencies
 
       site.theme.runtime_dependencies.each do |dep|
-        next if dep.name == "jekyll"
+        next if dep == "jekyll"
 
-        External.require_with_graceful_fail(dep.name) if plugin_allowed?(dep.name)
-      end
-    end
-
-    def self.require_from_bundler
-      if !ENV["JEKYLL_NO_BUNDLER_REQUIRE"] && File.file?("Gemfile")
-        require "bundler"
-
-        Bundler.setup
-        required_gems = Bundler.require(:jekyll_plugins)
-        message = "Required #{required_gems.map(&:name).join(", ")}"
-        Jekyll.logger.debug("PluginManager:", message)
-        ENV["JEKYLL_NO_BUNDLER_REQUIRE"] = "true"
-
-        true
-      else
-        false
+        External.require_with_graceful_fail(dep) if plugin_allowed?(dep)
       end
     end
 
