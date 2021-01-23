@@ -5,10 +5,8 @@ STDOUT.sync = true
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 
-require "jekyll"
+require "../lib/jekyll.rb"
 require "mercenary"
-
-Jekyll::PluginManager.require_from_bundler
 
 Jekyll::Deprecator.process(ARGV)
 

@@ -37,7 +37,7 @@ module Jekyll
             create_site new_blog_path
           end
 
-          after_install(new_blog_path, options)
+          Jekyll.logger.info "New jekyll site installed in #{new_blog_path.cyan}."
         end
 
         def blank_template
@@ -90,15 +90,6 @@ module Jekyll
 
         def scaffold_path
           "_posts/0000-00-00-welcome-to-jekyll.markdown.erb"
-        end
-
-        # After a new blog has been created, print a success notification and
-        # then automatically execute bundle install from within the new blog dir
-        # unless the user opts to generate a blank blog or skip 'bundle install'.
-
-        def after_install(path, options = {})
-          Jekyll.logger.info "New jekyll site installed in #{path.cyan}."
-          Jekyll.logger.info "Bundle install skipped." if options["skip-bundle"]
         end
       end
     end
