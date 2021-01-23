@@ -177,9 +177,6 @@ module Jekyll
 
       +Jekyll::PathManager.sanitized_path(base_directory, questionable_path)
     end
-
-    # Conditional optimizations
-    Jekyll::External.require_if_present("liquid/c")
   end
 end
 
