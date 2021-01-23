@@ -1,37 +1,10 @@
 # frozen_string_literal: true
+$LOAD_PATH << File.realpath("../../thirdparties/seo-tag/")\
+           << File.realpath("../../thirdparties/feed/")
 
 module Jekyll
   module External
     class << self
-      #
-      # Gems that, if installed, should be loaded.
-      # Usually contain subcommands.
-      #
-      def blessed_gems
-        %w(
-          jekyll-compose
-          jekyll-docs
-          jekyll-import
-        )
-      end
-
-      #
-      # Require a gem or file if it's present, otherwise silently fail.
-      #
-      # names - a string gem name or array of gem names
-      #
-      def require_if_present(names)
-        Array(names).each do |name|
-          begin
-            require name
-          rescue LoadError
-            Jekyll.logger.debug "Couldn't load #{name}. Skipping."
-            yield(name, version_constraint(name)) if block_given?
-            false
-          end
-        end
-      end
-
       #
       # The version constraint required to activate a given gem.
       # Usually the gem version requirement is "> 0," because any version
